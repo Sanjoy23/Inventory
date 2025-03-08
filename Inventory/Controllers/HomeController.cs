@@ -12,15 +12,27 @@ namespace Inventory.Controllers
 		{
 			return View();
 		}
-
 		public ActionResult About()
 		{
 			ViewBag.Message = "Your application description page.";
-
+			
 			return View();
 		}
-
-		public ActionResult Contact()
+        [HttpPost]
+        public ActionResult About(string btnSubmit)
+        {
+            //ViewBag.Message = "Your application description page.";
+            if (btnSubmit == "Save")
+            {
+                ViewBag.Message = "Save Triggered";
+            }
+            else if (btnSubmit == "Search")
+            {
+                ViewBag.Message = "Search Triggered";
+            }
+            return View();
+        }
+        public ActionResult Contact()
 		{
 			ViewBag.Message = "Your contact page.";
 

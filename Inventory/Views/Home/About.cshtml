@@ -6,4 +6,9 @@
     <h3>@ViewBag.Message</h3>
 
     <p>Use this area to provide additional information.</p>
+
+    <form method="post"action=@Url.Action("About", "Home")>
+        <input type="submit" value="Save" name="btnSubmit"/>
+        <input type="submit" value="Search" name="btnSubmit"/>
+    </form>
 </main>
