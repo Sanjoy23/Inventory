@@ -17,25 +17,26 @@ namespace Inventory.Controllers
         }
 
         [HttpPost]
-        //public ActionResult Login(string txtUserName, string txtPassword)
-        //{
-        //    if(txtUserName != null)
-        //    {
-        //        ViewBag.UserName = txtUserName;
-        //    }
-        //    return View();
-        //}
         public ActionResult Login(string txtUserName, string txtPassword)
         {
-            BasicMember member = new BasicMember();
+            BaseMember member = new BaseMember();
             DataTable dt = member.ValidateMemberAsDataTable(txtUserName, txtPassword);
             if (dt.Rows.Count > 0)
             {
-                ViewBag.UserName = txtUserName;
+                //ViewBag.UserName = txtUserName;
+                Session["UserName"] = txtUserName;
                 return Redirect(Url.Action("About", "Home"));
             }
             return View();
         }
+        public ActionResult Logout()
+        {
+            if (Session["UserName"] != "")
+            {
+                Session["UserName"] = "";
+            }
+            return Redirect(Url.Action("Login", "Auth"));
+		}
 
     }
 }
