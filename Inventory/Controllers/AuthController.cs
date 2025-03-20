@@ -38,5 +38,10 @@ namespace Inventory.Controllers
             return Redirect(Url.Action("Login", "Auth"));
 		}
 
-    }
+		public ActionResult Reset()
+		{
+			return View();
+		}
+
+	}
 }
