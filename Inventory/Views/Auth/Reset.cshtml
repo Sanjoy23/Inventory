@@ -16,8 +16,8 @@
         var rePassword = document.getElementById("RePasswordInput");
         if (password === rePassword && password !== null && rePassword !== null) {
             console.log("Password matched");
-        } else {
-            console.log("Password do not matched");
+        } else if (rePassword !== null) {
+            document.getElementById("NewPasswordStatus").innerText = "Password do not matched";
         }
     </script>
 </head>
@@ -26,26 +26,27 @@
         <div style="position: absolute; left: 0px; right: 0px; top: 0px; bottom: 0px; margin: auto; height: 450px; width: 90%;">
             <form method="post" action="@Url.Action("Index", "DashBoard")">
                 <div class="card">
-                    <h5 class="card-header" style="text-align: center">Reset Password</h5>
+                    <div class="card-header text-center">
+                        <h4> Forgot Password?</h4>
+                        <p>You can reset your password here.</p>
+                    </div>
+                    
                     <div class="card-body">
                         <div class="mb-3">
                             <label for="UserNameInput" class="form-label">Username or Email</label>
-                            <input type="text" name="txtUserName" class="form-control" id="UserNameInput" placeholder="username or email address">
+                            <input type="text" name="txtUserName" class="form-control" id="UserNameInput" required>
                         </div>
                         <div class="mb-3">
                             <label for="PasswordInput" class="form-label"> New Password</label>
-                            <input type="password" name="txtPassword" class="form-control" id="PasswordInput" placeholder="new password">
+                            <input type="password" name="txtPassword" class="form-control" id="PasswordInput" required>
                         </div>
                         <div class="mb-3">
                             <label for="RePasswordInput" class="form-label"> Confirm New Password</label>
-                            <input type="password" name="txtPassword" class="form-control" id="RePasswordInput" placeholder=" confirm new password">
-                            <h6 style="display: none; padding-top:2px; text-align:center; color:red">password do not match</h6>
+                            <input type="password" name="txtPassword" class="form-control" id="RePasswordInput" required>
+                            <h6 id="NewPasswordStatus" style="display: none; padding-top:2px; text-align:center; color:red"></h6>
                         </div>
                         <div class="d-flex justify-content-center">
-                            <input style="width: 325px" value="submit" class="btn btn-primary" type="submit" />
-                        </div>
-                        <div class="m-1">
-                            <a>Forget Password?</a>
+                            <input style="width: 325px" value="Reset Password" class="btn btn-primary" type="submit" />
                         </div>
                     </div>
                 </div>
