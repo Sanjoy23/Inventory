@@ -15,13 +15,14 @@
         function ValidatePassword() {
             var password = document.getElementById("NewPassword").value;
             var rePassword = document.getElementById("ConfirmPassword").value;
-            if (password === rePassword && password !== null && rePassword !== null) {
+            //var NewPasswordStatus = getElementById('NewPasswordStatus');
+            if (password === rePassword && password !== "" && rePassword !== "") {
                 document.getElementById('NewPasswordStatus').innerHTML = 'Passwords match';
                 document.getElementById('NewPasswordStatus').style.display = "block";
                 document.getElementById('NewPasswordStatus').style.color = "green";
                 document.getElementById('resetBtn').disabled = false;
             } else if (rePassword !== null || password !== rePassword) {
-                document.getElementById("NewPasswordStatus").innerHTML = "Passwords do not matched";
+                document.getElementById("NewPasswordStatus").innerHTML = "Passwords do not match or empty";
                 document.getElementById('NewPasswordStatus').style.display = "block";
                 document.getElementById('NewPasswordStatus').style.color = "red";
                 document.getElementById('resetBtn').disabled = true;
@@ -32,7 +33,7 @@
 <body>
     <div id="dvloginrapper" style="height:700px;width:400px; position: fixed; left:0px; right:0px; top:0px; bottom: 0px; margin: auto">
         <div style="position: absolute; left: 0px; right: 0px; top: 0px; bottom: 0px; margin: auto; height: 450px; width: 90%;">
-            <form method="post" action="@Url.Action("Index", "DashBoard")">
+            <form method="post" action="@Url.Action("Reset", "Auth")">
                 <div class="card">
                     <div class="card-header text-center">
                         <h4> Forgot Password?</h4>
@@ -46,11 +47,11 @@
                         </div>
                         <div class="mb-3">
                             <label for="PasswordInput" class="form-label"> New Password</label>
-                            <input type="password" name="txtPassword" class="form-control" id="NewPassword" required>
+                            <input type="password" name="txtNewPassword" class="form-control" id="NewPassword" required onkeyup="ValidatePassword()">
                         </div>
                         <div class="mb-3">
                             <label for="RePasswordInput" class="form-label"> Confirm New Password</label>
-                            <input type="password" name="txtPassword" class="form-control" id="ConfirmPassword" required onkeyup="ValidatePassword()">
+                            <input type="password" name="txtConfirmPassword" class="form-control" id="ConfirmPassword" required onkeyup="ValidatePassword()">
                             <span id="NewPasswordStatus" style="display: none; padding-top:2px; text-align:center; color:red"></span>
                         </div>
                         <div class="d-flex justify-content-center">

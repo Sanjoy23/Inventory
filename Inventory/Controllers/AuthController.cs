@@ -43,5 +43,18 @@ namespace Inventory.Controllers
 			return View();
 		}
 
+
+		[HttpPost]
+		public ActionResult Reset(string txtUserName, string txtNewPassword, string txtConfirmPassword)
+		{
+            BaseMember member = new BaseMember();
+            var IsMemberExist = member.FindMemberByUserName(txtUserName);
+            if (IsMemberExist != null)
+            {
+                member.ResetPassword(txtUserName, txtNewPassword, txtConfirmPassword);
+                return Redirect(Url.Action("Login", "Auth"));
+            }
+			return View();	
+		}
 	}
 }

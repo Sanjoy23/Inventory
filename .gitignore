@@ -77,3 +77,8 @@ app.config.transform
 .vscode/
 .idea/
 
+*.ldf
+*.mdf
+*.sqlite
+
+/Inventorydb.mdf

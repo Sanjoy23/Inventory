@@ -66,5 +66,49 @@ namespace Inventory.Models
             sqlConnection.Close();
             return listMember;   
         }
-    }
+
+        public string FindMemberByUserName(string UserName)
+        {
+            //BaseMember member = new BaseMember();
+            string member = null;
+            string connString = ConfigurationManager.ConnectionStrings["connString"].ToString();
+            SqlConnection sqlConnection = new SqlConnection(connString);
+            sqlConnection.Open();
+
+            string commandText = "FindMemebr";
+			SqlCommand cmd = new SqlCommand(commandText, sqlConnection);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@UserName", UserName);
+
+            SqlDataReader reader = cmd.ExecuteReader();
+			if (reader.HasRows)
+			{
+				while (reader.Read())
+				{
+					member = reader["UserName"].ToString();
+				}
+			}
+			cmd.Dispose();
+			sqlConnection.Close();
+			return member;
+        }
+
+        public void ResetPassword(string UserName, string newPassowrd, string confirmPass)
+        {
+			string connString = ConfigurationManager.ConnectionStrings["connString"].ToString();
+			SqlConnection sqlConnection = new SqlConnection(connString);
+			sqlConnection.Open();
+
+			string commandText = "ResetPassword";
+			SqlCommand cmd = new SqlCommand(commandText, sqlConnection);
+			cmd.CommandType = CommandType.StoredProcedure;
+			cmd.Parameters.AddWithValue("@UserName", UserName);
+			cmd.Parameters.AddWithValue("@NewPassword", newPassowrd);
+
+			SqlDataReader reader = cmd.ExecuteReader();
+			cmd.Dispose();
+			sqlConnection.Close();
+		}
+
+	}
 }
