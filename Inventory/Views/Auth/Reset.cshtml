@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     Layout = null;
 }
 
@@ -39,7 +38,7 @@
                         <h4> Forgot Password?</h4>
                         <p>You can reset your password here.</p>
                     </div>
-                    
+
                     <div class="card-body">
                         <div class="mb-3">
                             <label for="UserNameInput" class="form-label">Username or Email</label>
@@ -62,5 +61,24 @@
             </form>
         </div>
     </div>
+    @if (Session["Message"] != null)
+    {
+        if ((bool)Session["IsSuccess"])
+        {
+            <div class="alert alert-success text-center" id="resultMessage">@Session["Message"]</div>
+            <script>
+            setTimeout(function () {
+                window.location.href = '@Url.Action("Login", "Auth")';
+            }, 2000);
+            </script>
+        }
+        else
+        {
+            <div class="alert alert-danger text-center" id="resultMessage">@Session["Message"]</div>
+        }
+        Session.Remove("Message");
+        Session.Remove("IsSuccess");
+
+    }
 </body>
 </html>

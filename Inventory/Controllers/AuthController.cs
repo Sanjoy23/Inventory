@@ -47,14 +47,19 @@ namespace Inventory.Controllers
 		[HttpPost]
 		public ActionResult Reset(string txtUserName, string txtNewPassword, string txtConfirmPassword)
 		{
-            BaseMember member = new BaseMember();
-            var IsMemberExist = member.FindMemberByUserName(txtUserName);
-            if (IsMemberExist != null)
-            {
-                member.ResetPassword(txtUserName, txtNewPassword, txtConfirmPassword);
-                return Redirect(Url.Action("Login", "Auth"));
-            }
-			return View();	
+			BaseMember member = new BaseMember();
+			var IsMemberExist = member.FindMemberByUserName(txtUserName);
+			if (IsMemberExist != null && txtNewPassword.Equals(txtConfirmPassword))
+			{
+				member.ResetPassword(txtUserName, txtNewPassword);
+
+				Session["Message"] = "Your password has been successfully reset and redirect to login page";
+				Session["IsSuccess"] = true;
+				return View();
+			}
+			Session["Message"] = "User not found. Please try again.";
+			Session["IsSuccess"] = false;
+			return View();
 		}
 	}
 }

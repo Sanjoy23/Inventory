@@ -93,8 +93,8 @@ namespace Inventory.Models
 			return member;
         }
 
-        public void ResetPassword(string UserName, string newPassowrd, string confirmPass)
-        {
+		public void ResetPassword(string UserName, string newPassowrd)
+		{
 			string connString = ConfigurationManager.ConnectionStrings["connString"].ToString();
 			SqlConnection sqlConnection = new SqlConnection(connString);
 			sqlConnection.Open();
