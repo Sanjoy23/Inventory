@@ -1,16 +1,69 @@
-﻿
+﻿@using Inventory.Models
 @{
     ViewBag.Title = "DashBoard";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<style>
+    #tblEquipment {
+        font-family: Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
 
+    #tblEquipment td, #tblEquipment th {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+
+        #tblEquipment tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        #tblEquipment tr:hover {
+            background-color: #ddd;
+        }
+
+        #tblEquipment th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #04AA6D;
+            color: white;
+        }
+</style>
 <div class="row">
     <div class="col col-sm-6">
         <div style="height: 30px; background: #fbeeee; width:100%; text-align: center; padding: 2px; border-radius: 5px;">
-            caption 1
+            Equipment List
         </div>
         <div style="max-height: 400px; width: 100%; overflow: auto;">
-            list 1
+            @{ 
+                BaseEquipment baseEquipment = new BaseEquipment();
+                List<BaseEquipment> listEquipment = baseEquipment.ListEquipment();
+            }
+            <table id="tblEquipment" style="width: 100%">
+                <tr>
+                    <th>EquipmentId</th>
+                    <th>Equipment Name</th>
+                    <th>Quantity</th>
+                    <th>Stock</th>
+                    <th>Entry Date</th>
+                    <th>Receive Date</th>
+                </tr>
+                @{ 
+                    foreach(BaseEquipment obj in listEquipment)
+                    {
+                        <tr>
+                            <td>@obj.EquipmentID</td>
+                            <td>@obj.EquipName</td>
+                            <td>@obj.Quantity</td>
+                            <td>@obj.Stock</td>
+                            <td>@obj.EntryDate</td>
+                            <td>@obj.ReceivedDate</td>
+                        </tr>
+                    }
+                }
+            </table>
         </div>
     </div>
         <div class="col col-sm-6">
