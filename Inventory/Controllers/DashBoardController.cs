@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Inventory.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,7 +12,10 @@ namespace Inventory.Controllers
         // GET: DashBoard
         public ActionResult Index()
         {
-            return View();
+			BaseEquipment baseEquipment = new BaseEquipment();
+			List<BaseEquipment> listEquipment = baseEquipment.ListEquipment();
+            ViewBag.listEquipment = listEquipment;
+			return View();
         }
     }
 }
