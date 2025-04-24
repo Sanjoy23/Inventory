@@ -31,10 +31,35 @@
             color: white;
         }
 </style>
+<script>
+    //lagecy part
+    //function ShowModal() {
+    //    document.getElementById('dvOverlay').style.display = '';
+    //    document.getElementById('dvModal').style.display = '';
+    //}
+    //function HideModal() {
+    //    document.getElementById('dvOverlay').style.display = 'none';
+    //    document.getElementById('dvModal').style.display = 'none';
+    //}
+
+    // dynamic part
+    function ShowModal() {
+        $('#dvModal').dialog({
+            title: "Equipment Entry",
+            modal: true,
+            height: 600,
+            width: 400
+        });
+    }
+    function HideModal() {
+        
+    }
+</script>
 <div class="row">
     <div class="col col-sm-6">
         <div style="height: 30px; background: #fbeeee; width:100%; text-align: center; padding: 2px; border-radius: 5px;">
             Equipment List
+            <input type="button" value="New" style="float: right" onclick="ShowModal()"/>
         </div>
         <div style="max-height: 400px; width: 100%; overflow: auto;">
             @{ 
