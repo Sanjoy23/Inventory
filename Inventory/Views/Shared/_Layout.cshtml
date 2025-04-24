@@ -51,7 +51,9 @@
     </div>
 
     @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
+    <script src="~/Scripts/JqUI/jquery-ui.js"></script>
+    <link href="~/Scripts/JqUI/jquery-ui.css" rel="stylesheet" />
+    @*@Scripts.Render("~/bundles/bootstrap")*@
     @RenderSection("scripts", required: false)
 </body>
 </html>

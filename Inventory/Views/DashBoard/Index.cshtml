@@ -31,19 +31,46 @@
             color: white;
         }
 </style>
+<script>
+    //lagecy part
+    //function ShowModal() {
+    //    document.getElementById('dvOverlay').style.display = '';
+    //    document.getElementById('dvModal').style.display = '';
+    //}
+    //function HideModal() {
+    //    document.getElementById('dvOverlay').style.display = 'none';
+    //    document.getElementById('dvModal').style.display = 'none';
+    //}
+
+    // dynamic part
+    function ShowModal() {
+        $('#dvModal').dialog({
+            title: "Equipment Entry",
+            modal: true,
+            height: 600,
+            width: 400
+        });
+    }
+    function HideModal() {
+        
+    }
+</script>
 <div class="row">
     <div class="col col-sm-6">
         <div style="height: 30px; background: #fbeeee; width:100%; text-align: center; padding: 2px; border-radius: 5px;">
             Equipment List
+            <input type="button" value="New" style="float: right" onclick="ShowModal()"/>
         </div>
         <div style="max-height: 400px; width: 100%; overflow: auto;">
             @{ 
-                BaseEquipment baseEquipment = new BaseEquipment();
-                List<BaseEquipment> listEquipment = baseEquipment.ListEquipment();
+                //BaseEquipment baseEquipment = new BaseEquipment();
+                //List<BaseEquipment> listEquipment = baseEquipment.ListEquipment();
+                List<BaseEquipment> listEquipment = ViewBag.listEquipment;
             }
             <table id="tblEquipment" style="width: 100%">
                 <tr>
-                    <th>EquipmentId</th>
+                    <th>Update</th>
+                    <th>Delete</th>
                     <th>Equipment Name</th>
                     <th>Quantity</th>
                     <th>Stock</th>
@@ -51,10 +78,11 @@
                     <th>Receive Date</th>
                 </tr>
                 @{ 
-                    foreach(BaseEquipment obj in listEquipment)
+                    foreach (BaseEquipment obj in listEquipment)
                     {
                         <tr>
-                            <td>@obj.EquipmentID</td>
+                            <td><input type="button" value="Update" onclick="UpdateItem(@obj.EquipmentID)" /></td>
+                            <td><input type="button" value="Delete" onclick="DeleteItem(@obj.EquipmentID)" /></td>
                             <td>@obj.EquipName</td>
                             <td>@obj.Quantity</td>
                             <td>@obj.Stock</td>
@@ -75,4 +103,6 @@
             </div>
         </div>
 </div>
+
+@Html.Partial("_PartialEquipmentEntry");
 
