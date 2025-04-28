@@ -53,5 +53,27 @@ namespace Inventory.Models
 			sqlConnection.Close();
 			return listEquipment;
 		}
+
+		public int SaveEquipment(string name, int quantity, int stock)
+		{
+			string connString = ConfigurationManager.ConnectionStrings["connString"].ToString();
+
+			SqlConnection sqlConnection = new SqlConnection(connString);
+			sqlConnection.Open();
+
+			string CommandText = "spOST_InsertEquipment";
+			SqlCommand cmd = new SqlCommand(CommandText, sqlConnection);
+			
+			cmd.CommandTimeout = 0;
+			cmd.CommandType = CommandType.StoredProcedure;
+			cmd.Parameters.AddWithValue("@EquipName", name);
+			cmd.Parameters.AddWithValue("@EquipQuantity", quantity);
+			cmd.Parameters.AddWithValue("@EquipStock", stock);
+			cmd.ExecuteNonQuery();
+
+			cmd.Dispose();
+			sqlConnection.Close();
+			return 1;
+		}
 	}
 }
