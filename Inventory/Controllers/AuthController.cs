@@ -25,7 +25,7 @@ namespace Inventory.Controllers
             {
                 //ViewBag.UserName = txtUserName;
                 Session["UserName"] = txtUserName;
-                return Redirect(Url.Action("About", "Home"));
+                return Redirect(Url.Action("Index", "DashBoard"));
             }
             return View();
         }

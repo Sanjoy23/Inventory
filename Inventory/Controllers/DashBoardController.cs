@@ -17,5 +17,19 @@ namespace Inventory.Controllers
             ViewBag.listEquipment = listEquipment;
 			return View();
         }
+		public ActionResult AddEquipment()
+		{
+			return RedirectToAction("Index");
+		}
+
+		[HttpPost]
+        public ActionResult AddEquipment(string NewEquipName,int NewQuantity, int NewStock, decimal NewUnitPrice, DateTime NewEntryDate, DateTime NewReceiveDate )
+        {
+            BaseEquipment baseEquipment = new BaseEquipment();
+            int result = baseEquipment.SaveEquipment(NewEquipName, NewQuantity, NewStock,NewUnitPrice, NewEntryDate, NewReceiveDate);
+            if(result == 1)return RedirectToAction("Index");
+            
+            return View();
+        }
     }
 }
