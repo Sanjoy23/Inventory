@@ -54,7 +54,7 @@ namespace Inventory.Models
 			return listEquipment;
 		}
 
-		public int SaveEquipment(string name, int quantity, int stock)
+		public int SaveEquipment(string name, int quantity, int stock, decimal unitPrice, DateTime entryDate, DateTime receiveDate)
 		{
 			string connString = ConfigurationManager.ConnectionStrings["connString"].ToString();
 
@@ -69,6 +69,9 @@ namespace Inventory.Models
 			cmd.Parameters.AddWithValue("@EquipName", name);
 			cmd.Parameters.AddWithValue("@EquipQuantity", quantity);
 			cmd.Parameters.AddWithValue("@EquipStock", stock);
+			cmd.Parameters.AddWithValue("@unitPrice", unitPrice);
+			cmd.Parameters.AddWithValue("@entryDate", entryDate);
+			cmd.Parameters.AddWithValue("@receiveDate", receiveDate);
 			cmd.ExecuteNonQuery();
 
 			cmd.Dispose();

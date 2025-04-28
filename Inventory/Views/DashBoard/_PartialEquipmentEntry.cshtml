@@ -12,7 +12,12 @@
         var name = document.getElementById("NewEquipNameInput").value;
         var quantity = document.getElementById("NewQuantityInput").value;
         var stock = document.getElementById("NewStockInput").value;
-        if (name !== "" && quantity !== "" && stock !== "") {
+        var unitPrice = document.getElementById("NewUnitPriceInput").value;
+        var entryDate = document.getElementById("NewEntryDateInput").value;
+        var receiveDate = document.getElementById("NewReceiveDateInput").value;
+        if (name !== "" && quantity !== "" && stock !== "" && unitPrice !== ""
+            && entryDate !== "" && receiveDate !== "")
+        {
             document.getElementById('NewEntryEquipBtn').disabled = false;
         }
         else {
@@ -22,22 +27,35 @@
 </script>
 <div id="dvModal" style="display: none;">
     <form method="post" action="@Url.Action("AddEquipment", "DashBoard")">
-            <div class="mb-2">
-                <label for="NewEquipNameInput" class="form-label">Equipment Name</label>
-                <input type="text" id="NewEquipNameInput" name="NewEquipName" class="form-control" oninput="EnableBtn()"/>
-            </div>
-            <div class="mb-3">
-                <label for="NewQuantityInput" class="form-label">Quantity</label>
-                <input type="number" id="NewQuantityInput" name="NewQuantity" class="form-control" min="0" oninput="EnableBtn()"/>
-            </div>
-            <div class="mb-3">
-                <label for="NewStockInput" class="form-label">Stock</label>
-                <input type="number" id="NewStockInput" name="NewStock" class="form-control" min="0" oninput="EnableBtn()"/>
-            </div>
+        <div class="mb-2">
+            <label for="NewEquipNameInput" class="form-label">Equipment Name</label>
+            <input type="text" id="NewEquipNameInput" name="NewEquipName" class="form-control" oninput="EnableBtn()" />
+        </div>
+        <div class="mb-3">
+            <label for="NewQuantityInput" class="form-label">Quantity</label>
+            <input type="number" id="NewQuantityInput" name="NewQuantity" class="form-control" min="0" oninput="EnableBtn()" />
+        </div>
+        <div class="mb-3">
+            <label for="NewStockInput" class="form-label">Stock</label>
+            <input type="number" id="NewStockInput" name="NewStock" class="form-control" min="0" oninput="EnableBtn()" />
+        </div>
+        <div class="mb-3">
+            <label for="NewUnitPriceInput" class="form-label">Unit Price</label>
+            <input type="number" id="NewUnitPriceInput" name="NewUnitPrice" class="form-control" min="0" oninput="EnableBtn()" />
+        </div>
+        <div class="mb-3">
+            <label for="NewEntryDateInput" class="form-label">Entry Date</label>
+            <input type="datetime-local" id="NewEntryDateInput" name="NewEntryDate" class="form-control" oninput="EnableBtn()" />
+        </div>
+        <div class="mb-3">
+            <label for="NewReceiveDateInput" class="form-label">Receive Date</label>
+            <input type="datetime-local" id="NewReceiveDateInput" name="NewReceiveDate" class="form-control" oninput="EnableBtn()" />
+        </div>
 
-            <div class="justify-content-center">
-                <input id="NewEntryEquipBtn" disabled style="width: 325px" value="Add New Equipment" class="btn btn-primary" type="submit"/>
-            </div>
+
+        <div class="justify-content-center">
+            <input id="NewEntryEquipBtn" disabled style="width: 325px" value="Add New Equipment" class="btn btn-primary" type="submit" />
+        </div>
 
     </form>
 </div>
