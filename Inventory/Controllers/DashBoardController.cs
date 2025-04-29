@@ -31,5 +31,14 @@ namespace Inventory.Controllers
             
             return View();
         }
+
+        [HttpPost]
+        public ActionResult DeleteEquipment(int Id)
+        {
+            BaseEquipment baseEquipment = new BaseEquipment();
+            bool result = baseEquipment.DeleteEquipment(Id);
+			//if(result) return RedirectToAction("Index");
+			return RedirectToAction("Index");
+        }
     }
 }
