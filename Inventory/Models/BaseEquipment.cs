@@ -78,5 +78,23 @@ namespace Inventory.Models
 			sqlConnection.Close();
 			return 1;
 		}
+
+		public bool DeleteEquipment(int Id)
+		{
+			string connString = ConfigurationManager.ConnectionStrings["connString"].ToString();
+			SqlConnection sqlConnection = new SqlConnection(connString);
+			sqlConnection.Open();
+			string CommandText = "spOST_DeleteEquipment";
+			SqlCommand cmd = new SqlCommand(CommandText, sqlConnection);
+			cmd.CommandTimeout = 0;
+			cmd.CommandType = CommandType.StoredProcedure;
+			cmd.Parameters.AddWithValue("@EquipmentId", Id);
+			cmd.ExecuteNonQuery();
+
+			cmd.Dispose();
+			sqlConnection.Close();
+
+			return true;
+		}
 	}
 }
